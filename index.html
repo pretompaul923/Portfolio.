@@ -1,0 +1,761 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050d0b">
+<meta name="description" content="Pretom Kumar Paul — CSE undergraduate and aspiring software developer.">
+<title>Pretom Kumar Paul | Portfolio</title>
+
+<style>
+:root{
+  --bg:#050d0b;--surface:#091713;--surface2:#0d211a;
+  --text:#f0fff7;--muted:#a0b8ac;--accent:#43f5a2;
+  --cyan:#48dbe5;--line:#214a36;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.65;font-size:14px
+}
+body.light{
+  --bg:#edf5ef;--surface:#fff;--surface2:#e3f0e7;
+  --text:#142a1e;--muted:#526a5b;--accent:#087b50;
+  --cyan:#087d91;--line:#bdd6c5
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button,a{touch-action:manipulation}
+button:focus-visible,a:focus-visible,input:focus-visible,
+textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+[hidden]{display:none!important}
+h1,h2,h3{line-height:1.25;margin-top:0}
+p{color:var(--muted)}
+.container{max-width:1500px;margin:auto;padding:0 28px}
+.accent{color:var(--accent)}
+.eyebrow{font-size:10px;letter-spacing:2px;color:var(--accent);margin-bottom:9px}
+.section{padding:38px 0;border-bottom:1px solid var(--line)}
+.section-title{font-size:clamp(24px,3vw,35px);margin-bottom:8px}
+.section-desc{font-size:12px;max-width:650px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px 16px;border:1px solid var(--line);border-radius:30px;
+  font-size:11px;font-weight:bold;cursor:pointer;transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#03140b;border-color:var(--accent)}
+.btn-outline{background:var(--surface);color:var(--text)}
+.btn-small{padding:7px 11px;font-size:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.dot{display:inline-block;width:8px;height:8px;background:var(--accent);
+border-radius:50%;box-shadow:0 0 12px var(--accent)}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse at 80% 5%,#12442e55,transparent 38%),
+ radial-gradient(ellipse at 5% 85%,#083b3344,transparent 35%)
+}
+
+/* SIDEBAR */
+.sidebar{
+ position:fixed;z-index:50;inset:0 auto 0 0;width:140px;
+ display:flex;flex-direction:column;padding:18px 10px;
+ background:var(--surface);border-right:1px solid var(--line)
+}
+.logo{display:block;text-align:center;font-size:42px;font-weight:900;
+font-style:italic;color:var(--accent);margin-bottom:28px}
+.nav{display:grid;gap:6px}
+.nav a{display:flex;align-items:center;gap:9px;padding:10px 8px;
+border:1px solid transparent;border-radius:9px;font-size:11px;
+font-weight:bold;color:var(--muted)}
+.nav a:hover,.nav a.active{color:var(--accent);background:var(--surface2);border-color:var(--line)}
+.nav-icon{width:21px;text-align:center;font-size:17px}
+.sidebar-bottom{margin-top:auto;text-align:center}
+.social{display:flex;justify-content:center;gap:12px;margin-bottom:12px;font-size:11px}
+.social a:hover{color:var(--accent)}
+.theme-btn{width:100%;padding:8px;background:var(--surface2);
+color:var(--accent);border:1px solid var(--line);border-radius:25px}
+.sidebar-bottom small{display:block;margin-top:12px;font-size:9px;color:var(--muted)}
+main{margin-left:140px}
+
+/* HERO */
+.hero{
+ min-height:525px;display:grid;grid-template-columns:1.08fr .92fr;
+ align-items:center;gap:20px;padding-top:28px;padding-bottom:28px;
+ border-bottom:1px solid var(--line)
+}
+.status{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;
+border:1px solid var(--line);border-radius:30px;background:var(--surface);
+font-size:9px;letter-spacing:.4px}
+.hello{font-size:24px;margin:17px 0 0;color:var(--text)}
+.hero h1{font-size:clamp(37px,4.8vw,66px);letter-spacing:-2px;margin:0 0 12px}
+.gradient{background:linear-gradient(90deg,#9bffc2,#22e5af);
+-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-size:20px;letter-spacing:1px;color:var(--text);margin-bottom:12px}
+.role span{color:var(--cyan)}
+.hero-desc{font-size:12px;max-width:520px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.stats{display:flex;gap:18px;flex-wrap:wrap}
+.stat{padding-right:18px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat strong{display:block;font-size:20px;color:var(--accent)}
+.stat small{font-size:10px;color:var(--muted)}
+
+/* PERSONAL PHOTO */
+.portrait-stage{
+ position:relative;min-height:430px;display:flex;align-items:center;
+ justify-content:center;isolation:isolate;overflow:hidden;
+ background:radial-gradient(ellipse,#15503750,transparent 70%)
+}
+.portrait-orbit{
+ position:absolute;width:350px;height:350px;max-width:95%;
+ border:1px solid #43f5a277;border-radius:50%;
+ transform:rotate(-20deg);box-shadow:0 0 35px #43f5a21b
+}
+.portrait-orbit:after{
+ content:"";position:absolute;inset:18px;border:1px dashed #43f5a244;border-radius:50%
+}
+.portrait-frame{
+ position:relative;z-index:1;width:min(300px,77%);height:370px;
+ padding:4px;border-radius:150px 150px 20px 20px;overflow:hidden;
+ background:linear-gradient(135deg,#baffd8,#43f5a2 40%,#167b64);
+ box-shadow:0 0 35px #43f5a230,0 22px 55px #0008;
+ transition:transform .25s
+}
+.portrait-frame:hover{transform:translateY(-4px)}
+.portrait-photo{
+ display:block;width:100%;height:100%;object-fit:cover;
+ object-position:center 23%;border-radius:146px 146px 16px 16px;
+ background:#10241a
+}
+.portrait-caption{
+ position:absolute;z-index:3;bottom:19px;left:0;max-width:98%;
+ display:flex;align-items:center;gap:10px;padding:11px 13px;
+ border:1px solid #347b56;border-radius:10px;
+ background:#06140ff2;box-shadow:0 8px 25px #0005
+}
+.portrait-caption strong{display:block;color:#f0fff7;font-size:11px}
+.portrait-caption small{display:block;color:#a9d8be;font-size:9px}
+.photo-label{position:absolute;right:0;top:16px;color:var(--accent);
+font:9px monospace;letter-spacing:1.5px}
+.photo-bottom{position:absolute;right:0;bottom:0;color:var(--muted);
+font:8px monospace;letter-spacing:1px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.about-card p{font-size:12px}
+.code-card{display:flex;align-items:center;background:var(--surface2)}
+.code-card pre{font:11px/2 monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted)}
+.code-green{color:var(--accent)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:20px}
+.skill{display:flex;align-items:center;gap:8px;padding:10px;
+border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:11px;min-width:0}
+.skill-icon{width:27px;height:27px;flex-shrink:0;display:grid;place-items:center;
+border-radius:6px;background:var(--surface2);color:var(--accent);font-size:10px;font-weight:bold}
+.extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.extra-card h3{font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:10px;padding:5px 9px;border:1px solid var(--line);
+border-radius:20px;background:var(--surface2);color:var(--muted)}
+.language{display:flex;justify-content:space-between;gap:12px;padding:8px 0;
+border-bottom:1px solid var(--line);font-size:11px}
+.language:last-child{border:0}
+.language span:last-child{color:var(--accent)}
+
+/* PROJECTS */
+.project-tools{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;margin:20px 0}
+.filters{display:flex;flex-wrap:wrap;gap:7px}
+.filter{padding:7px 11px;border:1px solid var(--line);border-radius:22px;
+background:var(--surface);color:var(--muted);font-size:10px}
+.filter.active,.filter:hover{background:var(--accent);color:#03140b;border-color:var(--accent)}
+.search{width:220px;max-width:100%;padding:9px 12px;border:1px solid var(--line);
+border-radius:24px;background:var(--surface);color:var(--text)}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.project{min-width:0;min-height:250px;padding:17px;display:flex;flex-direction:column;
+border:1px solid #286047;border-radius:13px;overflow:hidden;
+background:linear-gradient(145deg,#0b3626,#06140e);transition:.2s}
+.project:hover{transform:translateY(-4px);border-color:var(--accent)}
+.project.cyber{background:linear-gradient(145deg,#07404b,#07151a)}
+.project.energy{background:linear-gradient(145deg,#3b5024,#101d13)}
+.project.purple{background:linear-gradient(145deg,#34234d,#11101c)}
+.project.blue{background:linear-gradient(145deg,#17415a,#0a1724)}
+.project-number{font:9px monospace;letter-spacing:2px;color:#a2f8c6;margin-bottom:10px}
+.project h3{font-size:17px;margin:11px 0 7px}
+.project p{font-size:11px;color:#c0d4c7;flex:1}
+.project .chip{font-size:9px;padding:4px 7px;color:#d8ffea;background:#0b291c;border-color:#47765c}
+.project-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.project .btn-outline{background:#07140f;color:#f0fff7}
+#projectCount{font-size:11px;color:var(--accent);margin-top:15px}
+.empty{padding:30px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+
+/* JOURNEY / RESUME / CONTACT */
+.lower-grid{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:14px}
+.timeline{border-left:1px solid var(--accent);margin:20px 0 0 8px;padding-left:22px}
+.timeline-item{position:relative;margin-bottom:23px}
+.timeline-item:before{content:"";position:absolute;left:-27px;top:6px;width:9px;height:9px;background:var(--accent);border-radius:50%}
+.timeline-item h3{font-size:13px;margin-bottom:4px}
+.timeline-item p{font-size:11px;margin-bottom:5px}
+.resume-box{display:flex;align-items:center;gap:12px;margin:16px 0;padding:13px;
+border:1px solid var(--line);border-radius:10px;background:var(--surface2)}
+.resume-icon{font-size:27px;color:var(--accent)}
+.resume-box strong{font-size:11px}
+.resume-box small{display:block;color:var(--muted);font-size:10px}
+.contact-links{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+.contact-form{display:grid;gap:10px;margin-top:14px}
+.contact-form label{font-size:11px;font-weight:bold}
+.contact-form input,.contact-form textarea{
+ display:block;width:100%;margin-top:5px;padding:10px;
+ border:1px solid var(--line);border-radius:7px;
+ background:var(--surface2);color:var(--text);resize:vertical
+}
+.form-status{font-size:10px;color:var(--accent)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+padding:20px 28px;font-size:10px;color:var(--muted);border-top:1px solid var(--line)}
+footer a{color:var(--accent)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* MOBILE */
+@media(max-width:1200px){
+ .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .lower-grid{grid-template-columns:1fr 1fr}
+ .contact-card{grid-column:1/-1}
+ .skills-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:850px){
+ .sidebar{position:sticky;top:0;inset:auto;width:100%;height:auto;
+ flex-direction:row;align-items:center;justify-content:space-between;
+ padding:7px 10px;border-right:0;border-bottom:1px solid var(--line)}
+ .logo{font-size:29px;margin:0 7px 0 0}
+ .nav{display:flex;gap:2px;overflow-x:auto}
+ .nav a{padding:7px}
+ .nav-label{display:none}
+ .sidebar-bottom{margin:0}
+ .social,.sidebar-bottom small{display:none}
+ .theme-btn{width:auto;white-space:nowrap;padding:7px}
+ main{margin-left:0}
+}
+@media(max-width:650px){
+ .container{padding-left:16px;padding-right:16px}
+ .hero{grid-template-columns:1fr;padding-top:16px;gap:0}
+ .portrait-stage{grid-row:1;min-height:335px}
+ .portrait-frame{width:215px;height:280px}
+ .portrait-orbit{width:270px;height:270px}
+ .portrait-caption{bottom:10px;padding:9px 11px}
+ .hero h1{font-size:clamp(35px,10vw,52px)}
+ .role{font-size:17px}
+ .about-grid,.extra-grid,.lower-grid{grid-template-columns:1fr}
+ .contact-card{grid-column:auto}
+ .skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .project-grid{grid-template-columns:1fr}
+ .project{min-height:210px}
+ .search{width:100%}
+ .section{padding-top:28px;padding-bottom:28px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<aside class="sidebar">
+  <a class="logo" href="#home" aria-label="Home">P</a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#home" class="active"><span class="nav-icon">⌂</span><span class="nav-label">Home</span></a>
+    <a href="#about"><span class="nav-icon">♙</span><span class="nav-label">About</span></a>
+    <a href="#skills"><span class="nav-icon">✳</span><span class="nav-label">Skills</span></a>
+    <a href="#projects"><span class="nav-icon">▦</span><span class="nav-label">Projects</span></a>
+    <a href="#journey"><span class="nav-icon">◷</span><span class="nav-label">Journey</span></a>
+    <a href="#resume"><span class="nav-icon">▤</span><span class="nav-label">Resume</span></a>
+    <a href="#contact"><span class="nav-icon">✉</span><span class="nav-label">Contact</span></a>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="social">
+      <a id="sideGithub" href="#contact">GitHub</a>
+      <a id="sideLinkedin" href="#contact">LinkedIn</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button" aria-pressed="false">☾ Theme</button>
+    <small>© <span id="year"></span><br>Pretom Kumar Paul<br>Built with passion</small>
+  </div>
+</aside>
+
+<main>
+<!-- HOME -->
+<section class="hero container" id="home">
+  <div>
+    <div class="status"><span class="dot"></span>CSE UNDERGRADUATE · DAFFODIL INTERNATIONAL UNIVERSITY</div>
+    <p class="hello">Hi, I'm</p>
+    <h1>Pretom <span class="gradient">Kumar Paul</span></h1>
+    <div class="role">Aspiring Software <span>Developer</span></div>
+    <p class="hero-desc">
+      I'm a CSE undergraduate at Daffodil International University,
+      passionate about building impactful software, exploring modern
+      technologies, and turning ideas into useful solutions.
+    </p>
+    <div class="actions">
+      <a href="#projects" class="btn btn-primary">Explore My Work ↗</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch →</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong id="heroProjectCount">10</strong><small>Project entries</small></div>
+      <div class="stat"><strong>CSE</strong><small>Undergraduate</small></div>
+      <div class="stat"><strong>∞</strong><small>Learning</small></div>
+    </div>
+  </div>
+
+  <div class="portrait-stage">
+    <div class="portrait-orbit"></div>
+    <div class="portrait-frame">
+      <!-- Your uploaded photo: keep pretom(2).jpeg beside index.html -->
+      <img
+        class="portrait-photo"
+        src="pretom(2).jpeg"
+        alt="Portrait of Pretom Kumar Paul wearing a blue shirt"
+      >
+    </div>
+    <div class="portrait-caption">
+      <span class="dot"></span>
+      <div>
+        <strong>Pretom Kumar Paul</strong>
+        <small>CSE Undergraduate</small>
+        <small>Aspiring Software Developer</small>
+      </div>
+    </div>
+    <div class="photo-label">01 / DEVELOPER</div>
+    <div class="photo-bottom">BUILD · LEARN · IMPROVE · REPEAT</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section container" id="about">
+  <div class="eyebrow">01 / ABOUT ME</div>
+  <div class="about-grid">
+    <article class="card about-card">
+      <h2 class="section-title">More Than Just a Student<span class="accent">.</span></h2>
+      <p>I'm Pretom Kumar Paul, a CSE undergraduate at Daffodil International University. I enjoy solving problems, learning technologies, and building projects that explore practical software solutions.</p>
+      <p>My interests include Java development, web applications, data structures, algorithms, AI concepts, and application development.</p>
+      <p>My goal is to become a software developer and keep improving through consistent learning and project work.</p>
+      <a href="#journey" class="btn btn-outline">Explore My Journey →</a>
+    </article>
+    <article class="card code-card">
+<pre><span class="code-green">const</span> developer = {
+  name: <span class="code-green">"Pretom Kumar Paul"</span>,
+  university: <span class="code-green">"DIU"</span>,
+  major: <span class="code-green">"CSE"</span>,
+  goal: <span class="code-green">"Software Developer"</span>,
+  mindset: <span class="code-green">"Always learning"</span>
+};</pre>
+    </article>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section container" id="skills">
+  <div class="eyebrow">02 / SKILLS & TECHNOLOGIES</div>
+  <h2 class="section-title">My Technical Universe<span class="accent">.</span></h2>
+  <p class="section-desc">Programming languages, tools and topics related to my learning and projects.</p>
+
+  <div class="skills-grid">
+    <div class="skill"><span class="skill-icon">C</span>C</div>
+    <div class="skill"><span class="skill-icon">C+</span>C++</div>
+    <div class="skill"><span class="skill-icon">J</span>Java</div>
+    <div class="skill"><span class="skill-icon">Py</span>Python</div>
+    <div class="skill"><span class="skill-icon">5</span>HTML</div>
+    <div class="skill"><span class="skill-icon">3</span>CSS</div>
+    <div class="skill"><span class="skill-icon">JS</span>JavaScript</div>
+    <div class="skill"><span class="skill-icon">R</span>React</div>
+    <div class="skill"><span class="skill-icon">N</span>Node.js</div>
+    <div class="skill"><span class="skill-icon">SQL</span>MySQL</div>
+    <div class="skill"><span class="skill-icon">DB</span>Databases</div>
+    <div class="skill"><span class="skill-icon">G</span>Git & GitHub</div>
+    <div class="skill"><span class="skill-icon">VS</span>VS Code</div>
+    <div class="skill"><span class="skill-icon">DS</span>Data Structures</div>
+    <div class="skill"><span class="skill-icon">AL</span>Algorithms</div>
+    <div class="skill"><span class="skill-icon">OOP</span>OOP</div>
+  </div>
+
+  <div class="extra-grid">
+    <article class="card extra-card">
+      <div class="eyebrow">Practical abilities</div>
+      <h3>Practical & Other Skills</h3>
+      <div class="chips">
+        <span class="chip">Google Docs</span>
+        <span class="chip">Google Sheets</span>
+        <span class="chip">Google Slides</span>
+        <span class="chip">Microsoft Office</span>
+        <span class="chip">Event Management</span>
+        <span class="chip">Social Media Management</span>
+        <span class="chip">Basic Video Editing</span>
+        <span class="chip">Presentation Design</span>
+        <span class="chip">Academic Documentation</span>
+      </div>
+    </article>
+    <article class="card extra-card">
+      <div class="eyebrow">Personal strengths</div>
+      <h3>Soft Skills</h3>
+      <div class="chips">
+        <span class="chip">Problem Solving</span>
+        <span class="chip">Teamwork</span>
+        <span class="chip">Communication</span>
+        <span class="chip">Time Management</span>
+        <span class="chip">Quick Learning</span>
+        <span class="chip">Adaptability</span>
+        <span class="chip">Presentation Skills</span>
+      </div>
+    </article>
+    <article class="card extra-card">
+      <div class="eyebrow">Communication</div>
+      <h3>Languages</h3>
+      <div class="language"><span>Bangla</span><span>Native</span></div>
+      <div class="language"><span>English</span><span>Intermediate</span></div>
+      <div class="language"><span>Hindi</span><span>Basic / Conversational</span></div>
+    </article>
+    <article class="card extra-card">
+      <div class="eyebrow">Future direction</div>
+      <h3>Career Interests</h3>
+      <div class="chips">
+        <span class="chip">Software Development</span>
+        <span class="chip">Java Development</span>
+        <span class="chip">Web Development</span>
+        <span class="chip">Data Structures & Algorithms</span>
+        <span class="chip">Problem Solving</span>
+        <span class="chip">Application Development</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section container" id="projects">
+  <div class="eyebrow">03 / PROJECT UNIVERSE</div>
+  <h2 class="section-title">Projects I've Explored<span class="accent">.</span></h2>
+  <p class="section-desc">Academic work, prototypes and project concepts. Add actual repository URLs when available.</p>
+
+  <div class="project-tools">
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="all" aria-pressed="true">All Projects</button>
+      <button class="filter" data-filter="ai" aria-pressed="false">AI & Security</button>
+      <button class="filter" data-filter="web" aria-pressed="false">Web</button>
+      <button class="filter" data-filter="dsa" aria-pressed="false">DSA</button>
+      <button class="filter" data-filter="academic" aria-pressed="false">Academic</button>
+      <button class="filter" data-filter="electronics" aria-pressed="false">Electronics</button>
+    </div>
+    <label>
+      <span class="sr-only">Search projects</span>
+      <input class="search" id="search" type="search" placeholder="Search projects...">
+    </label>
+  </div>
+
+  <div class="project-grid" id="projectGrid"></div>
+  <div class="empty" id="empty" hidden>No matching projects found.</div>
+  <p id="projectCount" aria-live="polite"></p>
+</section>
+
+<!-- JOURNEY / RESUME / CONTACT -->
+<section class="section container">
+  <div class="lower-grid">
+    <article class="card" id="journey">
+      <div class="eyebrow">04 / MY JOURNEY</div>
+      <h2>Learning & Growing</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>CSE Undergraduate</h3>
+          <p>Daffodil International University</p>
+          <p>Building a foundation in computer science and engineering.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Project-Based Learning</h3>
+          <p>Exploring programming, data structures, algorithms and web applications.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Future Goal</h3>
+          <p>Become a software developer and build useful applications.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="resume">
+      <div class="eyebrow">05 / RESUME</div>
+      <h2>Download My Resume</h2>
+      <p>A summary of my education, skills and project experience.</p>
+      <div class="resume-box">
+        <span class="resume-icon">▤</span>
+        <div><strong>Pretom Kumar Paul</strong><small>Resume · PDF</small></div>
+      </div>
+      <a class="btn btn-primary" href="pretom-resume.pdf" download>Download Resume ↓</a>
+      <p style="font-size:10px;margin-top:12px">Place your actual PDF in the same folder as index.html.</p>
+    </article>
+
+    <article class="card contact-card" id="contact">
+      <div class="eyebrow">06 / CONTACT ME</div>
+      <h2>Let's Connect</h2>
+      <p>For project discussions, collaborations and professional opportunities.</p>
+      <div class="contact-links">
+        <a id="githubLink" class="btn btn-outline btn-small" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a id="linkedinLink" class="btn btn-outline btn-small" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <label for="name">Your Name
+          <input id="name" name="name" required maxlength="100" placeholder="Your name">
+        </label>
+        <label for="email">Your Email
+          <input id="email" name="email" type="email" required maxlength="254" placeholder="Your email">
+        </label>
+        <label for="message">Your Message
+          <textarea id="message" name="message" rows="4" required maxlength="3000" placeholder="Write your message..."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Prepare Email →</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="footerYear"></span> Pretom Kumar Paul</span>
+  <span>Build · Learn · Improve · Repeat</span>
+  <a href="#home">Back to top ↑</a>
+</footer>
+</main>
+
+<script>
+/* Enter your real contact details here. */
+const CONFIG = {
+  email: "",
+  github: "",
+  linkedin: ""
+};
+
+/* Editable project list. Blank URLs are intentionally omitted from cards. */
+const PROJECTS = [
+  {
+    title:"BHUMI-SHIELD AI",category:"ai",theme:"",
+    tags:["LandTech","AI Concept","Bangladesh"],
+    description:"A Bangladesh-focused land provenance, ownership and inheritance intelligence concept. Explores ownership history, family relationships, deed/Khatian OCR, inheritance calculations and record consistency using synthetic demo data.",
+    github:"",demo:""
+  },
+  {
+    title:"CYBERGUARD AI",category:"ai",theme:"cyber",
+    tags:["Cybersecurity","AI Concept","Web"],
+    description:"A proposed cybersecurity platform concept for presenting security services and digital protection insights through a unified interface.",
+    github:"",demo:""
+  },
+  {
+    title:"EnergyWise Dashboard",category:"web",theme:"energy",
+    tags:["Dashboard","Energy","Visualization"],
+    description:"An energy-awareness dashboard concept with resource metrics, interactive visualizations, theme switching and graph algorithm demonstrations.",
+    github:"",demo:""
+  },
+  {
+    title:"Energy Power Management System",category:"dsa",theme:"",
+    tags:["C/C++","Data Structures","Algorithms"],
+    description:"An academic project concept exploring power management through structured records, priority-based data handling and graph-related operations.",
+    github:"",demo:""
+  },
+  {
+    title:"Hospital Appointment Scheduling System",category:"dsa",theme:"cyber",
+    tags:["C/C++","Heap","Priority Queue"],
+    description:"A hospital scheduling project using heaps and priority queues to organize emergency, urgent and normal patient appointments according to defined rules.",
+    github:"",demo:""
+  },
+  {
+    title:"Bookshop Management System",category:"academic",theme:"energy",
+    tags:["C","File Handling","Management"],
+    description:"An academic C programming project for organizing book records, inventory details and basic bookshop management operations.",
+    github:"",demo:""
+  },
+  {
+    title:"Digital Ammeter Project",category:"electronics",theme:"",
+    tags:["Electronics","Measurement","Circuits"],
+    description:"An academic electronics project focused on electric current measurement, circuit principles and practical measurement concepts.",
+    github:"",demo:""
+  },
+  {
+    title:"Pretom AI",category:"ai",theme:"cyber",
+    tags:["AI Assistant","Web Concept"],
+    description:"A personal AI assistant website concept intended to bring useful AI tools and a conversational interface into one place.",
+    github:"",demo:""
+  },
+  {
+    title:"Mental Peace with Treasure",category:"web",theme:"purple",
+    tags:["Wellness","Creative Website"],
+    description:"A creative website concept focused on reflection, calming activities, encouraging messages and interactive discoveries.",
+    github:"",demo:""
+  },
+  {
+    title:"Data Structures & Algorithms Lab",category:"dsa",theme:"blue",
+    tags:["C/C++","Trees","Graphs"],
+    description:"A collection of learning exercises involving linked lists, BSTs, AVL trees, heaps, searching, sorting, BFS and DFS.",
+    github:"",demo:""
+  }
+];
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
+}
+
+function safeURL(value){
+  if(!value)return "";
+  try{
+    const url=new URL(value);
+    return ["https:","http:"].includes(url.protocol)?url.href:"";
+  }catch{return ""}
+}
+
+/* Search and category filters */
+const grid=document.getElementById("projectGrid");
+const search=document.getElementById("search");
+const count=document.getElementById("projectCount");
+const empty=document.getElementById("empty");
+let activeFilter="all";
+
+function renderProjects(){
+  const query=search.value.trim().toLowerCase();
+  const visible=PROJECTS.filter(p=>{
+    const categoryOK=activeFilter==="all"||p.category===activeFilter;
+    const searchable=[p.title,p.description,...p.tags].join(" ").toLowerCase();
+    return categoryOK&&searchable.includes(query);
+  });
+
+  grid.innerHTML=visible.map(p=>{
+    const num=String(PROJECTS.indexOf(p)+1).padStart(2,"0");
+    const github=safeURL(p.github);
+    const demo=safeURL(p.demo);
+
+    return `<article class="project ${escapeHTML(p.theme)}">
+      <div class="project-number">PROJECT / ${num}</div>
+      <div class="chips">${p.tags.map(t=>`<span class="chip">${escapeHTML(t)}</span>`).join("")}</div>
+      <h3>${escapeHTML(p.title)}</h3>
+      <p>${escapeHTML(p.description)}</p>
+      <div class="project-actions">
+        ${demo?`<a class="btn btn-primary btn-small" href="${escapeHTML(demo)}" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>`:""}
+        ${github?`<a class="btn btn-outline btn-small" href="${escapeHTML(github)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`:""}
+        <a class="btn btn-outline btn-small" href="#contact">Discuss Project →</a>
+      </div>
+    </article>`;
+  }).join("");
+
+  empty.hidden=visible.length>0;
+  count.textContent=`Showing ${visible.length} of ${PROJECTS.length} projects`;
+  document.getElementById("heroProjectCount").textContent=PROJECTS.length;
+}
+
+document.querySelectorAll(".filter").forEach(button=>{
+  button.addEventListener("click",()=>{
+    activeFilter=button.dataset.filter;
+    document.querySelectorAll(".filter").forEach(b=>{
+      const selected=b===button;
+      b.classList.toggle("active",selected);
+      b.setAttribute("aria-pressed",String(selected));
+    });
+    renderProjects();
+  });
+});
+search.addEventListener("input",renderProjects);
+renderProjects();
+
+/* Social profile links */
+function setLink(id,url,fallback){
+  const element=document.getElementById(id);
+  const valid=safeURL(url);
+  element.href=valid||fallback;
+  if(valid){
+    element.target="_blank";
+    element.rel="noopener noreferrer";
+  }else{
+    element.removeAttribute("target");
+  }
+}
+setLink("githubLink",CONFIG.github,"https://github.com/");
+setLink("linkedinLink",CONFIG.linkedin,"https://www.linkedin.com/");
+setLink("sideGithub",CONFIG.github,"#contact");
+setLink("sideLinkedin",CONFIG.linkedin,"#contact");
+
+/* Dark / light theme */
+const themeButton=document.getElementById("themeBtn");
+
+function applyTheme(light){
+  document.body.classList.toggle("light",light);
+  themeButton.textContent=light?"☀ Light":"☾ Theme";
+  themeButton.setAttribute("aria-pressed",String(light));
+  document.querySelector('meta[name="theme-color"]').content=
+    light?"#edf5ef":"#050d0b";
+}
+
+let saved="";
+try{saved=localStorage.getItem("pretom-theme")||"";}catch{}
+applyTheme(saved==="light");
+
+themeButton.addEventListener("click",()=>{
+  const light=!document.body.classList.contains("light");
+  applyTheme(light);
+  try{localStorage.setItem("pretom-theme",light?"light":"dark");}catch{}
+});
+
+/* Copyright year */
+const year=new Date().getFullYear();
+document.getElementById("year").textContent=year;
+document.getElementById("footerYear").textContent=year;
+
+/* Active navigation */
+const navLinks=[...document.querySelectorAll(".nav a")];
+const sections=navLinks
+  .map(a=>document.querySelector(a.getAttribute("href")))
+  .filter(Boolean);
+
+function setActive(id){
+  navLinks.forEach(a=>{
+    const active=a.getAttribute("href")==="#"+id;
+    a.classList.toggle("active",active);
+    if(active)a.setAttribute("aria-current","location");
+    else a.removeAttribute("aria-current");
+  });
+}
+
+if("IntersectionObserver" in window){
+  const observer=new IntersectionObserver(entries=>{
+    const current=entries.filter(e=>e.isIntersecting)
+      .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(current)setActive(current.target.id);
+  },{rootMargin:"-15% 0px -55% 0px",threshold:[0,.1,.4]});
+  sections.forEach(s=>observer.observe(s));
+}
+
+/* Contact form: opens email application; no server/database is configured. */
+document.getElementById("contactForm").addEventListener("submit",event=>{
+  event.preventDefault();
+  const status=document.getElementById("formStatus");
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(CONFIG.email)){
+    status.textContent="Add your real email address in CONFIG.email first.";
+    return;
+  }
+
+  const data=new FormData(event.currentTarget);
+  const name=String(data.get("name")).trim();
+  const email=String(data.get("email")).trim();
+  const message=String(data.get("message")).trim();
+
+  if(!name||!email||!message){
+    status.textContent="Please complete all fields.";
+    return;
+  }
+
+  const subject=`Portfolio message from ${name}`;
+  const body=`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+  status.textContent="Opening your email application...";
+  window.location.href=
+    `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}`+
+    `&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
